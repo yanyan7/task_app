@@ -1,0 +1,8 @@
+<% @tasks.each do |task| %>
+  <%= task.name %>
+  <%= task.description %>
+  <%= link_to "編集", edit_task_path(task) %>
+  <%= link_to "完了", task, method: :delete %><br>
+<% end %>
+
+<%= link_to "新規", new_task_path %>
