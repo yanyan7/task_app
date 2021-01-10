@@ -1,6 +1,6 @@
 <% @tasks.each do |task| %>
-  <%= task.name %>
-  <%= task.description %>
+  <%= link_to task.name, task %>
+  <%= task.created_at %>
   <%= link_to "編集", edit_task_path(task) %>
   <%= link_to "完了", task, method: :delete %><br>
 <% end %>

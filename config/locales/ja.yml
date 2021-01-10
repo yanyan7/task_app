@@ -2,5 +2,5 @@ ja:
   activerecord:
     attributes:
       task:
-        name: タスク名
-        description: 内容
+        name: 名称
+        description: 詳細
