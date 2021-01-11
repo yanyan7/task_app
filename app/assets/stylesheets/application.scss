@@ -1,2 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.test {
+  border: 1px solid;
+}
+
+.test2 {
+  border: 1px solid red;
+}

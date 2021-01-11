@@ -1,12 +1,21 @@
+<h1>タスク登録</h1>
+
+<nav class="nav">
+  <%= link_to "一覧", tasks_path, class: "nav-link" %>
+</nav>
+
 <%= form_with(model: @task, local: true) do |f| %>
   <%= render "shared/error_messages" %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5, class: "form-control" %>
+  </div>
 
-  <%= f.submit "登録" %>
-  <%= link_to "一覧", tasks_path %>
+  <%= f.submit "登録", class: "btn btn-primary" %>
 <% end %>
