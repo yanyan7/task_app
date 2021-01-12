@@ -3,7 +3,8 @@
 </nav>
 
 <%= form_with(model: task, local: true) do |f| %>
-  <%= render "shared/error_messages" %>
+  <%#= render "shared/error_messages" %>
+  <%= render partial: "shared/error_messages", locals: { model: task } %>
 
   <div class="form-group">
     <%= f.label :name %>
