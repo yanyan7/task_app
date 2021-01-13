@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= link_to "ログアウト", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "ログイン", login_path %>
+    <% end %>
+
     <div>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
