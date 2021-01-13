@@ -1,7 +1,3 @@
-<nav class="nav">
-  <%= link_to "一覧", tasks_path, class: "nav-link" %>
-</nav>
-
 <%= form_with(model: task, local: true) do |f| %>
   <%#= render "shared/error_messages" %>
   <%= render partial: "shared/error_messages", locals: { model: task } %>
