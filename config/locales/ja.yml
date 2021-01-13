@@ -4,3 +4,8 @@ ja:
       task:
         name: 名称
         description: 詳細
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
