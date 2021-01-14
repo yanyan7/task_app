@@ -11,12 +11,13 @@
 
   <body>
     <% if current_user %>
-      <%= link_to "タスク一覧", tasks_path %>
-      <%= link_to "ユーザー一覧", users_path %>
-      <%= link_to "ログアウト", logout_path, method: :delete %>
+      <%= link_to "タスク一覧", tasks_path %>&nbsp;
+      <%= link_to "ユーザー一覧", users_path %>&nbsp;
+      <%= link_to "ログアウト", logout_path, method: :delete %>&nbsp;
+      <%= link_to current_user.name, current_user %>さん
     <% else %>
-      <%= link_to "ログイン", login_path %>
-      <%= link_to "サインアップ", new_user_path %>
+      <%= link_to "ログイン", login_path %>&nbsp;
+      <%= link_to "サインアップ", new_user_path %>&nbsp;
     <% end %>
 
     <div>

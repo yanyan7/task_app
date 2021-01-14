@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :tasks
+  
   before_validation { self.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }

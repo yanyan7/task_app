@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.all.where(user_id: current_user.id)
   end
 
   def show
@@ -13,6 +13,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       flash[:success] = "登録しました"
       redirect_to @task
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    @task.user_id = current_user.id
     if @task.update(task_params)
       flash[:success] = "更新しました"
       redirect_to @task
