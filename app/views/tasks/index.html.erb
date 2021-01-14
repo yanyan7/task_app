@@ -1,4 +1,11 @@
-<h1><%= current_user.name %>&nbsp;さんのタスク一覧</h1>
+<h1>
+  <% if current_user.admin? %>
+    <%= "全ユーザ" %>&nbsp;
+  <% else %>
+    <%= current_user.name %>&nbsp;さん
+  <% end %>
+  のタスク一覧
+</h1>
 
 <div>
   <%= link_to "新規", new_task_path, class: "btn btn-primary" %>

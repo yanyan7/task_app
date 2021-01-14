@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
     def login_required
       redirect_to login_url unless current_user
     end
+    
+    def admin_required
+      if !current_user.admin?
+        flash[:danger] = "管理者のみ利用可能な機能です"
+        redirect_to root_url
+      end
+    end
 end

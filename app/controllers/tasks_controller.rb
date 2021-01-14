@@ -1,6 +1,12 @@
 class TasksController < ApplicationController
+  before_action :correct_task_required, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @tasks = Task.all.where(user_id: current_user.id)
+    if current_user.admin?
+      @tasks = Task.all
+    else
+      @tasks = Task.all.where(user_id: current_user.id)
+    end
   end
 
   def show
@@ -48,5 +54,13 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(:name, :description)
+    end
+    
+    def correct_task_required
+      user_id = Task.find(params[:id]).user_id
+      if !current_user.admin? && user_id.to_i != current_user.id.to_i
+        flash[:danger] = "管理者のみ利用可能な機能です"
+        redirect_to root_url
+      end
     end
 end

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
+  before_action :admin_required, only: [:index]
+  before_action :correct_user_required, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -49,5 +51,12 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+    
+    def correct_user_required
+      if !current_user.admin? && params[:id].to_i != current_user.id.to_i
+        flash[:danger] = "管理者のみ利用可能な機能です"
+        redirect_to root_url
+      end
     end
 end
