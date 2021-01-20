@@ -18,8 +18,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    forget(current_user)
-    reset_session
+    if current_user
+      forget(current_user)
+      reset_session
+    end
     # @current_user = nil
     logger.debug("session[:user_id]: #{session[:user_id]}")
     logger.debug("cookies.signed[:user_id]: #{cookies.signed[:user_id]}")
