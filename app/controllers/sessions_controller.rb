@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      remember user
       flash[:success] = "ログインしました"
       redirect_to root_url
     else
@@ -17,7 +18,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    forget(current_user)
     reset_session
+    # @current_user = nil
+    logger.debug("session[:user_id]: #{session[:user_id]}")
+    logger.debug("cookies.signed[:user_id]: #{cookies.signed[:user_id]}")
+    logger.debug("cookies.signed[:remember_token]: #{cookies.signed[:remember_token]}")
+
     flash[:success] = "ログアウトしました"
     redirect_to root_url
   end
